@@ -13,7 +13,7 @@ enterField = Entry(calculator, justify = RIGHT)
 enterField.insert(0, '0')
 enterField.grid(row = 0, column = 0, columnspan = 4, pady = 10)
 
-
+d
 
 numberPad = [7,8,9,4,5,6,1,2,3]
 num = 0
