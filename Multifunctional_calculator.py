@@ -7,12 +7,41 @@ from functools import partial
 def update_enterField(clicked_button):
     if enterField.get() == '0':
         enterField.delete(0)
-        updated_text = str(clicked_button.cget('text'))
-        enterField.insert(tk.END, updated_text)
-    else:
-        current_text = str(enterField.cget('text'))
-        updated_text = current_text + str(clicked_button.cget('text'))
-        enterField.insert(tk.END, updated_text)
+    updated_text = str(clicked_button.cget('text'))
+    enterField.insert(tk.END, updated_text)
+
+def backspace():
+    back_var = enterField.get()[:-1]
+    enterField.delete(0,tk.END)
+    enterField.insert(0,back_var)
+
+def clear_enterField():
+    enterField.delete(0,tk.END)
+    enterField.insert(0, '0')
+
+def calculation():
+    enterField_text = enterField.get()[::]
+    print(enterField_text)
+    result = None
+    if '*' in enterField_text:
+        first_num = int(enterField_text.split('*')[0])
+        second_num = int(enterField_text.split('*')[-1])
+        result = first_num * second_num
+    elif '/' in enterField_text:
+        first_num = enterField_text.split('/')[0]
+        second_num = enterField_text.split('/')[-1]
+        result = int(first_num) / int(second_num)
+    elif '+' in enterField_text:
+        first_num = int(enterField_text.split('+')[0])
+        second_num = int(enterField_text.split('+')[-1])
+        result = first_num + second_num
+    elif '-' in enterField_text:
+        first_num = int(enterField_text.split('-')[0])
+        second_num = int(enterField_text.split('-')[-1])
+        result = first_num - second_num
+    
+    enterField.delete(0,tk.END)
+    enterField.insert(0,result)
 
 window = tk.Tk()
 window.title('Багатофункціональний калькулятор')
@@ -26,6 +55,9 @@ calculator.grid()
 enterField = tk.Entry(calculator, justify=tk.RIGHT)
 enterField.insert(0, '0')
 enterField.grid(row=0, column=0, columnspan=4, pady=10)
+
+btn_Backspace = tk.Button(calculator, text='<=', command=backspace, background='#15C54D')
+btn_Backspace.grid(row=0, column=3, pady=1, padx=10)
 
 # --- NumPad --- #
 
@@ -46,7 +78,7 @@ btn_Zero.grid(row=5, column=0, columnspan=2)
 btn_Comma = tk.Button(calculator, text=',', command=lambda: update_enterField(btn_Comma), width=6, height=1)
 btn_Comma.grid(row=5, column=2)
 
-btn_Equal = tk.Button(calculator, text='=', width=12, height=2)
+btn_Equal = tk.Button(calculator, text='=', width=12, height=2, command=calculation)
 btn_Equal.grid(row=4, column=3, columnspan=2)
 
 # --- Memory buttons --- #
@@ -57,7 +89,7 @@ btn_MemoSave.grid(row=1, column=0, pady=1)
 btn_MemoRead = tk.Button(calculator, text='MR', )
 btn_MemoRead.grid(row=1, column=1, pady=1)
 
-btn_MemoClear = tk.Button(calculator, text='MC', )
+btn_MemoClear = tk.Button(calculator, text='MC', command=clear_enterField)
 btn_MemoClear.grid(row=1, column=2, pady=1)
 
 btn_MemoAdd = tk.Button(calculator, text='M+', )
@@ -66,73 +98,6 @@ btn_MemoAdd.grid(row=1, column=3, pady=1, padx=10)
 btn_MemoSubtract = tk.Button(calculator, text='M-', )
 btn_MemoSubtract.grid(row=1, column=4, pady=1, padx=10)
 
-
-# --- operations' functions --- #
-
-def plus():
-    print('+')
-
-
-def minus():
-    print('-')
-
-
-def divide():
-    print('/')
-
-
-def multiply():
-    print('*')
-
-
-def expo():
-    print('x^y')
-
-
-def root():
-    print('√')
-
-
-def factorial():
-    print('!')
-
-
-def percent():
-    print('%')
-
-
-def log_b():
-    print('1')
-
-
-def lg():
-    print('2')
-
-
-def log_2():
-    print('3')
-
-
-def ln():
-    print('4')
-
-
-# --- operations' dictionary --- #
-
-operations = {
-    '+': plus,
-    '-': minus,
-    '*': multiply,
-    '/': divide,
-    'x^y': expo,
-    '√': root,
-    '!': factorial,
-    '%': percent,
-    'log_base(x)': log_b,
-    'log_10': lg,
-    'log_2': log_2,
-    'ln(1+x)': ln,
-}
 
 # --- simple operations --- #
 
@@ -148,10 +113,15 @@ btn_Multiply.grid(row=3, column=4)
 
 # --- additional operations --- #
 
-# btn_Expo = b.Button(calculator, text='x^y', command=lambda: update_enterField(btn_Expo), row=2, col=6)
-# btn_Root = b.Button(calculator, text='√', command=lambda: update_enterField(btn_Root), row=2, col=7)
-# btn_Factorial = b.Button(calculator, text='!', command=lambda: update_enterField(btn_Factorial), row=3, col=6)
-# btn_Percent = b.Button(calculator, text='%', command=lambda: update_enterField(btn_Percent), row=3, col=7)
+btn_Expo = b.Button(calculator, text='x^y', command=lambda: update_enterField(btn_Expo))
+btn_Root = b.Button(calculator, text='√', command=lambda: update_enterField(btn_Root))
+btn_Factorial = b.Button(calculator, text='!', command=lambda: update_enterField(btn_Factorial))
+btn_Percent = b.Button(calculator, text='%', command=lambda: update_enterField(btn_Percent))
+
+btn_Expo.grid(row=2, column=6)
+btn_Root.grid(row=2, column=7)
+btn_Factorial.grid(row=3, column=6)
+btn_Percent.grid(row=3, column=7)
 
 # --- logaryphmic operations --- #
 
