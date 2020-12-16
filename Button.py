@@ -1,14 +1,6 @@
 import tkinter as tk
 
 
-class Button:
-    def __init__(self, master, text, command, row, col, width=6, height=2):
-        self.btn = tk.Button(master,
-                             text=text,
-                             command=command,
-                             width=width,
-                             height=height,
-                             )
-        self.btn.cget('text')
-        self.btn.grid(row=row, column=col, padx=6, pady=0)
-        
+class Button(tk.Button):
+    def __init__(self, master, **kwargs):
+        tk.Button.__init__(self, master, width=6, height=2, **kwargs)

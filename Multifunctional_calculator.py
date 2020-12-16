@@ -136,23 +136,28 @@ operations = {
 
 # --- simple operations --- #
 
-btn_Plus = b.Button(calculator, text='+', command=lambda: update_enterField(btn_Plus), row=2, col=3)
-btn_Subtract = b.Button(calculator, text='-', command=lambda: update_enterField(btn_Subtract), row=2, col=4)
-btn_Divide = b.Button(calculator, text='/', command=lambda: update_enterField(btn_Divide), row=3, col=3)
-btn_Multiply = b.Button(calculator, text='*', command=lambda: update_enterField(btn_Multiply), row=3, col=4)
+btn_Plus = b.Button(calculator, text='+', command=lambda: update_enterField(btn_Plus))
+btn_Subtract = b.Button(calculator, text='-', command=lambda: update_enterField(btn_Subtract))
+btn_Divide = b.Button(calculator, text='/', command=lambda: update_enterField(btn_Divide))
+btn_Multiply = b.Button(calculator, text='*', command=lambda: update_enterField(btn_Multiply))
+
+btn_Plus.grid(row=2, column=3)
+btn_Subtract.grid(row=2, column=4)
+btn_Divide.grid(row=3, column=3)
+btn_Multiply.grid(row=3, column=4)
 
 # --- additional operations --- #
 
-btn_Expo = b.Button(calculator, text='x^y', command=lambda: update_enterField(btn_Expo), row=2, col=6)
-btn_Root = b.Button(calculator, text='√', command=lambda: update_enterField(btn_Root), row=2, col=7)
-btn_Factorial = b.Button(calculator, text='!', command=lambda: update_enterField(btn_Factorial), row=3, col=6)
-btn_Percent = b.Button(calculator, text='%', command=lambda: update_enterField(btn_Percent), row=3, col=7)
+# btn_Expo = b.Button(calculator, text='x^y', command=lambda: update_enterField(btn_Expo), row=2, col=6)
+# btn_Root = b.Button(calculator, text='√', command=lambda: update_enterField(btn_Root), row=2, col=7)
+# btn_Factorial = b.Button(calculator, text='!', command=lambda: update_enterField(btn_Factorial), row=3, col=6)
+# btn_Percent = b.Button(calculator, text='%', command=lambda: update_enterField(btn_Percent), row=3, col=7)
 
 # --- logaryphmic operations --- #
 
-btn_Log = b.Button(calculator, text='log_base(x)', command=log_b, row=2, col=8)
-btn_Log10 = b.Button(calculator, text='log_10(x)', command=lg, row=2, col=9)
-btn_Log2 = b.Button(calculator, text='log_2(x)', command=log_2, row=3, col=8)
-btn_Log1p = b.Button(calculator, text='ln(1+x)', command=ln, row=3, col=9)
+# btn_Log = b.Button(calculator, text='log_base(x)', command=log_b, row=2, col=8)
+# btn_Log10 = b.Button(calculator, text='log_10(x)', command=lg, row=2, col=9)
+# btn_Log2 = b.Button(calculator, text='log_2(x)', command=log_2, row=3, col=8)
+# btn_Log1p = b.Button(calculator, text='ln(1+x)', command=ln, row=3, col=9)
 
 window.mainloop()
