@@ -5,10 +5,14 @@ from functools import partial
 
 
 def update_enterField(clicked_button):
-    current_text = str(enterField.cget('text'))
-    updated_text = current_text + str(clicked_button.cget('text'))
-    enterField.insert(0, updated_text)
-
+    if enterField.get() == '0':
+        enterField.delete(0)
+        updated_text = str(clicked_button.cget('text'))
+        enterField.insert(tk.END, updated_text)
+    else:
+        current_text = str(enterField.cget('text'))
+        updated_text = current_text + str(clicked_button.cget('text'))
+        enterField.insert(tk.END, updated_text)
 
 window = tk.Tk()
 window.title('Багатофункціональний калькулятор')
@@ -132,17 +136,17 @@ operations = {
 
 # --- simple operations --- #
 
-btn_Plus = b.Button(calculator, text='+', command=lambda: 1, row=2, col=3)
-btn_Subtract = b.Button(calculator, text='-', command=lambda: 1, row=2, col=4)
-btn_Divide = b.Button(calculator, text='/', command=lambda: 1, row=3, col=3)
-btn_Multiply = b.Button(calculator, text='*', command=lambda: 1, row=3, col=4)
+btn_Plus = b.Button(calculator, text='+', command=lambda: update_enterField(btn_Plus), row=2, col=3)
+btn_Subtract = b.Button(calculator, text='-', command=lambda: update_enterField(btn_Subtract), row=2, col=4)
+btn_Divide = b.Button(calculator, text='/', command=lambda: update_enterField(btn_Divide), row=3, col=3)
+btn_Multiply = b.Button(calculator, text='*', command=lambda: update_enterField(btn_Multiply), row=3, col=4)
 
 # --- additional operations --- #
 
-btn_Expo = b.Button(calculator, text='x^y', command=lambda: 1, row=2, col=6)
-btn_Root = b.Button(calculator, text='√', command=lambda: 1, row=2, col=7)
-btn_Factorial = b.Button(calculator, text='!', command=lambda: 1, row=3, col=6)
-btn_Percent = b.Button(calculator, text='%', command=lambda: 1, row=3, col=7)
+btn_Expo = b.Button(calculator, text='x^y', command=lambda: update_enterField(btn_Expo), row=2, col=6)
+btn_Root = b.Button(calculator, text='√', command=lambda: update_enterField(btn_Root), row=2, col=7)
+btn_Factorial = b.Button(calculator, text='!', command=lambda: update_enterField(btn_Factorial), row=3, col=6)
+btn_Percent = b.Button(calculator, text='%', command=lambda: update_enterField(btn_Percent), row=3, col=7)
 
 # --- logaryphmic operations --- #
 

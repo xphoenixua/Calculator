@@ -7,6 +7,8 @@ class Button:
                              text=text,
                              command=command,
                              width=width,
-                             height=height
+                             height=height,
                              )
+        self.btn.cget('text')
         self.btn.grid(row=row, column=col, padx=6, pady=0)
+        
