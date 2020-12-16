@@ -1,5 +1,12 @@
 import tkinter as tk
 import Button as b
+import math
+from functools import partial
+
+def update_enterField(clicked_button):
+    current_text = str(enterField.cget('text'))
+    updated_text = current_text + str(clicked_button.cget('text'))
+    enterField.insert(0,updated_text)
 
 window = tk.Tk()
 window.title('Багатофункціональний калькулятор')
@@ -16,21 +23,21 @@ enterField.grid(row=0, column=0, columnspan=4, pady=10)
 
 # --- NumPad --- #
 
-numberPad = [7, 8, 9, 4, 5, 6, 1, 2, 3]
+numPad = [7, 8, 9, 4, 5, 6, 1, 2, 3]
 num = 0
 btn = []
 for i in range(2, 5):
     for j in range(3):
-        btn.append(tk.Button(calculator, text='{}'.format(numberPad[num]), width=6, height=2))
+        btn.append(tk.Button(calculator, text='{}'.format(numPad[num]), command = lambda: partial(update_enterField, btn[num]), width=6, height=2))
         btn[num].grid(row=i, column=j, pady=1)
         num += 1
 
 # --- misc --- #
 
-btn_Zero = tk.Button(calculator, text='0', width=12, height=1)
+btn_Zero = tk.Button(calculator, text='0', command = lambda: update_enterField(btn_Zero), width=12, height=1)
 btn_Zero.grid(row=5, column=0, columnspan=2)
 
-btn_Comma = tk.Button(calculator, text=',', width=6, height=1)
+btn_Comma = tk.Button(calculator, text=',', command = lambda: update_enterField(btn_Comma), width=6, height=1)
 btn_Comma.grid(row=5, column=2)
 
 btn_Equal = tk.Button(calculator, text='=', width=12, height=2)
@@ -111,17 +118,17 @@ operations = {
 
 # --- simple operations --- #
 
-btn_Add = b.Button(calculator, text='+', command=plus, row=2, col=3)
-btn_Subtract = b.Button(calculator, text='-', command=minus, row=2, col=4)
-btn_Divide = b.Button(calculator, text='/', command=divide, row=3, col=3)
-btn_Multiply = b.Button(calculator, text='*', command=multiply, row=3, col=4)
+btn_Plus = b.Button(calculator, text='+', command=lambda: 1, row=2, col=3)
+btn_Subtract = b.Button(calculator, text='-', command=lambda: 1, row=2, col=4)
+btn_Divide = b.Button(calculator, text='/', command=lambda: 1, row=3, col=3)
+btn_Multiply = b.Button(calculator, text='*', command=lambda: 1, row=3, col=4)
 
 # --- additional operations --- #
 
-btn_Expo = b.Button(calculator, text='x^y', command=expo, row=2, col=6)
-btn_Root = b.Button(calculator, text='√', command=root, row=2, col=7)
-btn_Factorial = b.Button(calculator, text='!', command=factorial, row=3, col=6)
-btn_Percent = b.Button(calculator, text='%', command=percent, row=3, col=7)
+btn_Expo = b.Button(calculator, text='x^y', command=lambda: 1, row=2, col=6)
+btn_Root = b.Button(calculator, text='√', command=lambda: 1, row=2, col=7)
+btn_Factorial = b.Button(calculator, text='!', command=lambda: 1, row=3, col=6)
+btn_Percent = b.Button(calculator, text='%', command=lambda: 1, row=3, col=7)
 
 # --- logaryphmic operations --- #
 
