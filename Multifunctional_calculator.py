@@ -38,7 +38,6 @@ def add(string):
             equ = equ.replace(old,new)
         else:
             flag = False
-    print(equ, 'equ add')
     return equ 
  
 def subtract(string):
@@ -61,7 +60,6 @@ def subtract(string):
                 equ = equ.replace(old, new)
         else:
             flag = False
-    print(equ, 'equ minus')#
     return equ
  
 def multiply(string):
@@ -77,7 +75,6 @@ def multiply(string):
             equ = equ.replace(old,new)
         else:
             flag = False
-    print(equ, 'equ mult')
     return equ
  
 def divide(string):
@@ -96,7 +93,6 @@ def divide(string):
             equ = equ.replace(old,new)
         else:
             flag = False
-    print(equ, 'equ div')
     return equ
  
 def expo(string):
@@ -119,7 +115,6 @@ def expo(string):
                 return equ
         else:
             flag = False
-    print(equ, 'equ expo')
     return equ
 
 def factorial(string):
@@ -135,7 +130,6 @@ def factorial(string):
             equ = equ.replace(old,new)
         else:
             flag = False
-    print(equ, 'equ fact')
     return equ
 
 def lg(string):
@@ -146,7 +140,6 @@ def lg(string):
         if is_right:
             old = is_right.group()
             nums = old.split('lg_')
-            print(nums)
             try:
                 sum = math.log10(float(nums[1]))
                 new = str(sum)
@@ -156,7 +149,6 @@ def lg(string):
                 break
         else:
             flag = False
-    print(equ, 'equ lg')
     return equ
 
 def ln(string):
@@ -172,7 +164,6 @@ def ln(string):
             equ = equ.replace(old,new)
         else:
             flag = False
-    print(equ, 'equ ln')
     return equ
 
 def log2(string):
@@ -188,7 +179,6 @@ def log2(string):
             equ = equ.replace(old,new)
         else:
             flag = False
-    print(equ, 'equ log2_')
     return equ
 
 def percentage(string):
@@ -204,7 +194,6 @@ def percentage(string):
             equ = equ.replace(old,new)
         else:
             flag = False
-    print(equ, 'equ perc')
     return equ
 
 def root(string):
@@ -219,13 +208,11 @@ def root(string):
         elif is_right:
             old = is_right.group()
             nums = old.split('**')
-            print(nums)
             sum = pow(float(nums[0]),float(nums[1]))
             new = str(sum)
             equ = equ.replace(old,new)
         else:
             flag = False
-    print(equ, 'equ root')
     return equ
 
 def sin(string):
@@ -241,7 +228,6 @@ def sin(string):
             equ = equ.replace(old,new)
         else:
             flag = False
-    print(equ, 'equ sin')
     return equ
 
 def cos(string):
@@ -257,7 +243,6 @@ def cos(string):
             equ = equ.replace(old,new)
         else:
             flag = False
-    print(equ, 'equ cos')
     return equ
 
 def tg(string):
@@ -273,7 +258,6 @@ def tg(string):
             equ = equ.replace(old,new)
         else:
             flag = False
-    print(equ, 'equ tg')
     return equ
 
 def ctg(string):
@@ -289,7 +273,6 @@ def ctg(string):
             equ = equ.replace(old,new)
         else:
             flag = False
-    print(equ, 'equ ctg')
     return equ
 
 def arcsin(string):
@@ -309,7 +292,6 @@ def arcsin(string):
                 break
         else:
             flag = False
-    print(equ, 'equ arcsin')
     return equ
 
 def arccos(string):
@@ -329,7 +311,6 @@ def arccos(string):
                 break
         else:
             flag = False
-    print(equ, 'equ arccos')
     return equ
 
 def arctg(string):
@@ -349,7 +330,6 @@ def arctg(string):
                 break
         else:
             flag = False
-    print(equ, 'equ arctg')
     return equ
 
 def arcctg(string):
@@ -369,7 +349,6 @@ def arcctg(string):
                 break
         else:
             flag = False
-    print(equ, 'equ arcctg')
     return equ
 
 # --- parsing --- #
@@ -447,7 +426,6 @@ def check(equ):
             return equ
     else:
         equ = pri(equ)
-        print(equ)
         return equ
 
 # --- Entry() --- #
@@ -459,11 +437,9 @@ external = 'external.txt'
 def calculation():
     equ = enterField.get()[::]
     calc_history.append(equ)
-    print(equ, 'equ - before insert')
     equ = check(equ)
     calc_history.append(equ)
     calc_history.append('\n')
-    print(equ, 'equ - insert')
     if enterField.get()[::]==equ:
         err_Syntax()
     enterField.delete(0,tk.END)
@@ -719,13 +695,11 @@ def fileSave():
     calc_output=open(history, 'w', encoding='utf-8')
     for line in calc_history:
         calc_output.write(line+'\n')
-        print('working')
     calc_output.close()
 
 def fileRead():
     calc_input=open(external, 'r', encoding='utf-8')
     expression=calc_input.readline()
-    print(expression)
     if enterField.get() == '0':
             enterField.delete(0)
     enterField.insert(tk.END,expression)
