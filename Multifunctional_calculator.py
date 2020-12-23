@@ -43,7 +43,7 @@ def subtract(string):
                 equ = equ.replace(old, new)
         else:
             flag = False
-    print(equ, 'equ minus')
+    print(equ, 'equ minus')#
     return equ
  
 def multiply(string):
