@@ -1,2 +1,2 @@
 # Calculator
-Multifunctional calculator without using eval() function but parsing string input.
+Multifunctional calculator without using eval() function. Instead, it parses string input, such as numbers, parentheses, operation symbols.
